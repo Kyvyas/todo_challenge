@@ -19,11 +19,9 @@
       <button class="btn addButton" ng-click="toDoCtrl.addTask()">Add Task</button>
     </form>
 
-
     <button ng-click="filter = true">Show active tasks</button>
     <button ng-click="filter = false" >Show completed tasks</button>
     <button ng-click="todoCtrl.deleteAllCompleted()">Delete completed tasks</button>
-
 
     <p>Total: {{ todoCtrl.toDoList.tasks.length }} </p>
 
