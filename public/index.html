@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="ToDo">
   <head>
     <meta charset="utf-8">
     <title>To Do List</title>
@@ -11,12 +11,36 @@
     <script src="js/toDoController.js"></script>
   </head>
 
-  <body ng-controller="ToDoController as addTaskCtrl">
+  <body ng-controller="ToDoController as toDoCtrl">
     <h1>To do list</h1>
     <form class="form-horizontal">
-      <input type="text" ng-model="addTaskCtrl.toDoItem">
-      <button class="btn" ng-click="">Add Task</button>
+      What do you need to do? <input type="text" ng-model="toDoCtrl.taskName" >
+      When is it due? <input type="text" ng-model="toDoCtrl.taskDate" >
+      <button class="btn addButton" ng-click="toDoCtrl.addTask()">Add Task</button>
     </form>
+
+
+    <button ng-click="filter = true">Show active tasks</button>
+    <button ng-click="filter = false" >Show completed tasks</button>
+    <button ng-click="todoCtrl.deleteAllCompleted()">Delete completed tasks</button>
+
+
+    <p>Total: {{ todoCtrl.toDoList.tasks.length }} </p>
+
+    <ul class="list-group" >
+      <li ng-repeat="item in toDoCtrl.toDoList.tasks | filter: {active: filter}">
+        <h3>{{ item.name }}</h3> 
+        <p>Deadline: {{ item.due }}</p>
+        <button class="deleteButton btn-danger" ng-click="toDoCtrl.deleteTask($index)">Delete</button>
+        Complete: <input type="checkbox" ng-click="item.active = false" ng-checked="item.active">
+        Edit: <input type="checkbox" class="editButton" ng-model="edit">
+        <p ng-show="edit">
+          <input type="text" ng-model="toDoCtrl.editedName">
+          <input type="text" ng-model="toDoCtrl.editedDate">
+          <button class="btn saveButton" ng-click="toDoCtrl.editTask(item, $index)">Save</button>
+        </p>
+      </li>
+    </ul>
   </body>
   
   </html>
