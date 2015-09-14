@@ -40,8 +40,14 @@ toDo.controller('ToDoController', [function() {
 
   self.deleteAllCompleted = function(){
     self.toDolist = self.toDolist.filter(function(task){
-      return !task.active;
+      return task.active = true;
     });
+  };
+
+  self.deleteAll = function() {
+    self.toDoList = {
+      "tasks" : []
+    }
   };
 
 }]);

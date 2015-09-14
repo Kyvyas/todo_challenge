@@ -19,6 +19,7 @@
     "test": "test"
   },
   "devDependencies": {
+    "bower": "^1.5.2",
     "gulp": "^3.9.0",
     "gulp-protractor": "^1.0.0",
     "jasmine-core": "^2.3.4",
